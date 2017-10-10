@@ -37,8 +37,6 @@ dst_password = "DEST. Password"
 dst_jira = "DESTINATION JIRA BASE URL"
 dst_headers = {'Content-Type': 'application/json'}
 
-filters = {}
-
 src_authCookie = get_cookie(src_jira, src_login, src_password)
 if (src_authCookie == 401):
 	print("Getting source authentication has failed.")
@@ -57,12 +55,13 @@ timestamp("Started.")
 
 src_filters = json.loads(requestGet([src_jira + '/rest/api/2/filter/my', '', src_headers]).content.decode('utf8'))
 
-for i in src_filters:
-	filters.update({i['name']: i['jql']})
-	body = '{ "name": ' + json.dumps(i['name']) + ', "jql": ' + json.dumps(i['jql']) + ' }'
+for f in src_filters:
+	body = '{ "name": ' + json.dumps(f['name']) + ', "jql": ' + json.dumps(f['jql']) + ' }'
 	dst_filter = requestPost([dst_jira + '/rest/api/2/filter', body, dst_headers])
 	if (dst_filter.status_code != 200):
 		timestamp("Filter with " + body + " body wasn't created successfully, with error")
 		timestamp("\t" + str(json.loads(dst_filter.content.decode('utf8'))['errorMessages']))
+	else:
+		timestamp("Filter " + i['name'] + " was successfully created.")
 
 timestamp("Done.")
