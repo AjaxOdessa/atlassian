@@ -50,3 +50,6 @@ with open(infile, 'r', newline='') as csvfile:
 		elif request.status_code in (401, 403, 500):
 			dump_request_errors(request)
 			sys.exit(1)
+		else:
+			dump_request_errors(request)
+			sys.exit(1)
