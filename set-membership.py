@@ -47,9 +47,6 @@ with open(infile, 'r', newline='') as csvfile:
 			print("Successfully added user '" + line[0] + "' to group '" + line[1] + "'")
 		elif request.status_code in (400, 404):
 			dump_request_errors(request)
-		elif request.status_code in (401, 403, 500):
-			dump_request_errors(request)
-			sys.exit(1)
 		else:
 			dump_request_errors(request)
 			sys.exit(1)
