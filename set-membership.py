@@ -12,7 +12,7 @@ password = ''
 if len(sys.argv) != 2:
 	print('Script require single parameter - CSV file, where each line is a single "name, group" record.')
 	print('CSV dump can be produced with the next SQL request (example provided for Postgres):')
-	print("\COPY (SELECT child_name, parent_name FROM cwd_membership ORDER BY 2,1) TO '/tmp/membership.csv' WITH CSV HEADER QUOTE '\"' DELIMITER ',';")
+	print("\COPY (SELECT child_name, parent_name FROM cwd_membership ORDER BY 2,1) TO '/tmp/membership.csv' WITH CSV QUOTE '\"' DELIMITER ',';")
 	sys.exit(1)
 else:
 	infile = sys.argv[1]
