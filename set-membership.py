@@ -11,6 +11,8 @@ password = ''
 
 if len(sys.argv) != 2:
 	print('Script require single parameter - CSV file, where each line is a single "name, group" record.')
+	print('CSV dump can be produced with the next SQL request (example provided for Postgres')
+	print('\copy (select child_name as username, parent_name as group_name from cwd_membership) to \'/tmp/membership.csv\' with csv header quote \'"\' delimiter \',\';')
 	sys.exit(1)
 else:
 	infile = sys.argv[1]
