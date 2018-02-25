@@ -1,2 +1,3 @@
 # groovy
-Various groovy scripts for JIRA and other Atlassian products
+# python
+Various scripts for JIRA and other Atlassian products
