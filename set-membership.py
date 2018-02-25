@@ -3,7 +3,6 @@ import csv
 import json
 import requests
 import sys
-import urllib.parse
 
 base_url = ''
 login = ''
@@ -46,7 +45,7 @@ else:
 with open(infile, 'r', newline='') as csvfile:
 	for line in csv.reader(csvfile, delimiter = ','):
 		rest_api = base_url + '/rest/api/2/group/user'
-		request = requests.post(rest_api, params={"groupname":urllib.parse.quote(line[1])}, json={"name":line[0]}, headers=headers)
+		request = requests.post(rest_api, params={"groupname":line[1]}, json={"name":line[0]}, headers=headers)
 		if request.status_code == 201:
 			print("Successfully added user '" + line[0] + "' to group '" + line[1] + "'")
 		elif request.status_code in (400, 404):
